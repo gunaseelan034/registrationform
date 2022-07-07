@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import "./App.css";
-import Auth from "./pages/auth/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Auth from "./pages/auth/auth";
 import Home from "./pages/layout";
 import { DashBoard } from "./pages/menu/dashboard";
 
