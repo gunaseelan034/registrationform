@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Auth />}></Route>
         <Route path="/home" element={<Home />}>
           <Route index element={<DashBoard />} />
-          <Route path='some' element={<span>wwwd</span>} />
+          <Route path="some" element={<span>wwwd</span>} />
         </Route>
       </Routes>
     </BrowserRouter>
