@@ -1,38 +1,31 @@
-.App {
-  text-align: center;
+:root, #speechify-header-hover-button-container, #speechify-paragraph-hover-button-container, #speechify-player, #speechify-listening-nudge, #speechify-feedback-form {
+  --speechify-primary-color:  #4856fd;
+  --font-family:  Inter, sans-serif;
+  --transitions:  none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+  border-bottom: 1px solid black;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ant-table-thead  {
+  background: #ffffff;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.ant-table table {
+     width: 100%;
+     text-align: left;
+     border-radius: 2px 2px 0 0;
+     /* border-collapse: separate; */
+     border-spacing: 0;
+ }
+.ant-table-thead > tr > th {
+     position: relative;
+     color: rgba(0, 0, 0, 0.85);
+     font-weight: 500;
+     text-align: left;
+     /* background: #fafafa; */
+     /* border-bottom: 1px solid #f0f0f0; */
+     /* transition: background 0.3s ease; */
+ }
