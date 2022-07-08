@@ -1,7 +1,8 @@
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export const getAdmissionAppliedDetails = () => {
-  return axios("http://192.168.0.112:3002/user/get", {
+  return axios( BASE_URL + "/user/get", {
     method: "GET",
   })
     .then((resp) => resp)

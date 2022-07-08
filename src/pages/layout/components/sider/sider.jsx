@@ -5,10 +5,14 @@ const { Sider } = Layout;
 
 export const Siders = ({ collapsed }) => {
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+    <Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+    >
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <img
-          style={{marginTop: '18px'}}
+          style={{ marginTop: "18px" }}
           src="http://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png"
           width={50}
         />
