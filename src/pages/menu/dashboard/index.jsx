@@ -7,17 +7,23 @@ import {
   Table,
   Menu,
   Badge,
-  Tag,
   Dropdown,
   Space,
+  Form,
 } from "antd";
-import { DownOutlined, EyeOutlined, LoadingOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  EyeOutlined,
+  HomeFilled,
+  LoadingOutlined,
+} from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { PageHeaders } from "../../layout/components/pageheader/pageheader";
+import { PageHeaders } from "../../../pages/layout/components/pageheader/pageheader";
 import { QueryFilter } from "../../layout/components/queryfilter/queryfilter";
 import API from "../../../services/index";
 import { TagStatus } from "./viewstudent/tagStatus";
+import { DownloadXlxs } from "./download/downloadxlxs";
 const { Content } = Layout;
 
 const MenuSelection = ({ id, getData }) => {
@@ -32,6 +38,7 @@ const MenuSelection = ({ id, getData }) => {
         message.error("Error Occured");
       });
   };
+
   return (
     <Menu
       style={{ padding: "10px" }}
@@ -89,7 +96,7 @@ const MenuSelection = ({ id, getData }) => {
               <Badge status="warning" text="Waiting" />
             </span>
           ),
-          key: "2",
+          key: "3",
           value: "Waiting",
         },
       ]}
@@ -100,6 +107,9 @@ const MenuSelection = ({ id, getData }) => {
 export const DashBoard = () => {
   const [data, setData] = useState();
   const [spin, setSpin] = useState(false);
+  const [filters, setFilters] = useState();
+
+  
 
   const getData = () => {
     setSpin(true);
@@ -117,10 +127,16 @@ export const DashBoard = () => {
 
   const tableColumn = [
     {
+      title: "#",
+      dataIndex: "sno",
+      key: "sno",
+      render: (value, item, index) => index,
+    },
+    {
       title: "Admission No",
       dataIndex: "admission_no",
       sorter: true,
-      key: "admission_no",
+      key: "1",
       render: (_, result) => (
         <span style={{ fontSize: "14px" }}>
           {result.admission_no == null ? "N/A" : result.admission_no}
@@ -130,25 +146,25 @@ export const DashBoard = () => {
     {
       title: "Name",
       dataIndex: "students",
-      key: "students",
+      key: "2",
       render: (students) =>
         students.map((students) => students.first_name + students.last_name),
     },
     {
       title: "Relevant Type",
       dataIndex: "relevant_type",
-      key: "relevant_type",
+      key: "3",
     },
     {
       title: "Gender",
       dataIndex: "students",
-      key: "students",
+      key: "4",
       render: (students) => students.map((students) => students.gender),
     },
     {
       title: "Email",
       dataIndex: "email",
-      key: "email",
+      key: "5",
       render: (_, result) => (
         <span style={{ fontSize: "14px" }}>{result.email}</span>
       ),
@@ -156,12 +172,12 @@ export const DashBoard = () => {
     {
       title: "Mobile",
       dataIndex: "mobile",
-      key: "mobile",
+      key: "6",
     },
     {
       title: "Age",
       dataIndex: "students",
-      key: "students",
+      key: "7",
       sorter: (a, b) => a - b,
       render: (students) =>
         students.map((students) => students.age + students.age),
@@ -170,19 +186,14 @@ export const DashBoard = () => {
       title: "Class",
       dataIndex: "students",
       sorter: (a, b) => a - b,
-      key: "students",
+      key: "8",
       render: (students) => students.map((students) => students.class),
     },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (_, result) => <TagStatus result={result} />
-    },
+
     {
       title: "View",
       dataIndex: "view",
-      key: "view",
+      key: "9",
       render: (_, result) => (
         <Link to={`viewstudent/?id=${result.id}`}>
           <Button size="small" onClick={() => {}}>
@@ -194,7 +205,7 @@ export const DashBoard = () => {
     {
       title: "Action",
       dataIndex: "action",
-      key: "action",
+      key: "10",
       render: (_, result) => (
         <Dropdown
           overlay={<MenuSelection id={result.id} getData={getData} />}
@@ -215,16 +226,26 @@ export const DashBoard = () => {
         </Dropdown>
       ),
     },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "11",
+      render: (_, result) => <TagStatus result={result} />,
+    },
   ];
 
   useEffect(() => {
-    getData();
+    getData(filters);
   }, []);
 
   return (
     <div>
-      <PageHeaders title={"Dashboard"} />
-      <QueryFilter spin={spin} getData={getData} />
+      <PageHeaders
+        title={"Dashboard"}
+        icon={<HomeFilled />}
+        DownloadXlxs={<DownloadXlxs data={data} />}
+      />
+      <QueryFilter spin={spin} getData={getData} setFilters={setFilters} />
       <Content
         className="site-layout-background"
         style={{
@@ -239,7 +260,7 @@ export const DashBoard = () => {
         >
           <Table
             style={{
-              marginTop: "60px",
+              marginTop: "10px",
             }}
             pagination={{
               pageSizeOptions: ["10", "20"],

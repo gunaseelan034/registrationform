@@ -3,89 +3,92 @@ import {
   ReloadOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { AutoComplete, Button, Col, Row, Select, Tooltip } from "antd";
-import { useState } from "react";
+import { Form, Button, Col, Row, Select, Tooltip, Input, Space } from "antd";
 
-export const QueryFilter = ({ spin, getData }) => {
-  const mockVal = (str, repeat = 1) => ({
-    value: str.repeat(repeat),
-  });
-  const [options, setOptions] = useState([]);
-  const onSearch = (searchText) => {
-    setOptions(
-      !searchText
-        ? []
-        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
-    );
-  };
+export const QueryFilter = ({ spin, getData, setFilters }) => {
+  const [form] = Form.useForm();
+  const relevanOption = [
+    { label: "General", value: "General" },
+    { label: "Father", value: "Father" },
+    { label: "Mother", value: "Mother" },
+    { label: "Siblings", value: "Siblings" },
+  ];
 
-  const onSelect = (data) => {
-    console.log("onSelect", data);
+  const search = () => {
+    form.validateFields().then((values) => {
+      setFilters(values);
+      getData();
+    });
   };
 
   return (
     <>
-      <Row
-        gutter={20}
+      <div
         style={{
-          margin: "12px 16px",
-          padding: 24,
+          margin: "8px 16px",
+          padding: "5px 10px 0px 15px",
         }}
       >
-        <Col span={5}>
-          <span>Admission Id</span>
-          <AutoComplete
-            options={options}
-            style={{ width: 200, marginLeft: "10px" }}
-            placeholder="Search"
-            onSelect={onSelect}
-            onSearch={onSearch}
-          />
-        </Col>
-        <Col span={5}>
-          <span>Class</span>
-          <Select
-            placeholder="Select Class"
-            style={{ width: 200, marginLeft: "10px" }}
-          />
-        </Col>
-        <Col span={5}>
-          <span>Section</span>
-          <Select
-            placeholder="Select Section"
-            style={{ width: 200, marginLeft: "10px" }}
-          />
-        </Col>
-        <Col span={5}>
-          <span>Status</span>
-          <Select
-            placeholder="Select Status"
-            style={{ width: 200, marginLeft: "10px" }}
-          />
-        </Col>
-        <Col span={4}>
-          <Tooltip title="Reload">
-            <Button
-              size="middle"
-              shape="circle"
-              onClick={getData}
-              style={{ float: "right", marginLeft: "10px" }}
-            >
-              {spin ? <LoadingOutlined /> : <ReloadOutlined />}
-            </Button>
-          </Tooltip>
-          <Button type="primary" style={{ float: "right" }}>
-            <SearchOutlined />
-            Search
-          </Button>
-          <Button
-            type="default"
-            style={{ float: "right", marginRight: "10px" }}
-          >
-            Reset
-          </Button>
-        </Col>
-      </Row>
+        <Form form={form} layout="horizontal">
+          <Row gutter={1}>
+            <Col span={18}>
+              <Row gutter={24}>
+                <Col span={6}>
+                  <Form.Item name="relevant_Type" label="Relevant Type">
+                    <Select
+                      placeholder="Relevant Type"
+                      options={relevanOption}
+                      style={{ width: "100%" }}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Form.Item name="class" label="Class">
+                    <Select
+                      style={{ width: "100%" }}
+                      placeholder="Select Class"
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Form.Item name="mobile" label="Mobile">
+                    <Input placeholder="Mobile" />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Col>
+            <Col span={6}>
+              <Space style={{ float: "right" }}>
+                <Tooltip title="Reload Table">
+                  <Button
+                    size="middle"
+                    type="dashed"
+                    onClick={getData}
+                    shape="circle"
+                    icon={!spin ? <ReloadOutlined /> : <LoadingOutlined />}
+                  />
+                </Tooltip>
+                <Button
+                  size="middle"
+                  type="dashed"
+                  onClick={() => form.resetFields()}
+                >
+                  Reset
+                </Button>
+                <Button
+                  style={{ marginLeft: "10px" }}
+                  icon={<SearchOutlined />}
+                  type="primary"
+                  size="middle"
+                  onClick={search}
+                >
+                  Search
+                </Button>
+              </Space>
+            </Col>
+          </Row>
+        </Form>
+      </div>
     </>
   );
 };

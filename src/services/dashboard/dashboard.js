@@ -20,8 +20,9 @@ export const getAdmissionAppliedDetailsById = (values) => {
 export const updateApplicationStatus = (values) => {
   return axios(BASE_URL + `/user/updatestatus`, {
     method: "put",
-    data: values
+    data: values,
   })
     .then((resp) => resp)
     .catch((err) => err);
 };
+
