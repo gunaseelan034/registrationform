@@ -147,8 +147,7 @@ export const ViewAll = () => {
                     avatar={
                       <Avatar
                         style={{
-                          color: "#f56a00",
-                          backgroundColor: "#fde3cf",
+                          color: "#eeeee",
                           textTransform: "uppercase",
                         }}
                         icon={<UserOutlined />}

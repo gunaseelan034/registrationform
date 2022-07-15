@@ -17,7 +17,7 @@ export const DownloadXlxs = ({ data }) => {
 
   return (
     <div>
-      <Button type="text" onClick={download}>
+      <Button type="dashed" onClick={download}>
         <Space>
           <DownloadOutlined style={{ color: "grey" }} />
           <span style={{ fontWeight: "400" }}>Export</span>

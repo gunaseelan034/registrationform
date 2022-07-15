@@ -10,10 +10,12 @@ import {
   Dropdown,
   Space,
   Form,
+  Divider,
 } from "antd";
 import {
   DownOutlined,
   EyeOutlined,
+  FileDoneOutlined,
   HomeFilled,
   LoadingOutlined,
 } from "@ant-design/icons";
@@ -26,95 +28,16 @@ import { TagStatus } from "./viewstudent/tagStatus";
 import { DownloadXlxs } from "./download/downloadxlxs";
 const { Content } = Layout;
 
-const MenuSelection = ({ id, getData }) => {
-  var updateApplicationStatus = (values) => {
-    API.dashboard
-      .updateApplicationStatus(values)
-      .then(() => {
-        getData();
-        message.success("Successfuly Updated");
-      })
-      .catch(() => {
-        message.error("Error Occured");
-      });
-  };
-
-  return (
-    <Menu
-      style={{ padding: "10px" }}
-      items={[
-        {
-          label: (
-            <span
-              onClick={() => {
-                updateApplicationStatus({ id: id, status: "approve" });
-              }}
-            >
-              {" "}
-              <Badge color="#87d068" text="Approve" />
-            </span>
-          ),
-          key: "0",
-          value: "approve",
-        },
-        {
-          label: (
-            <span
-              onClick={() => {
-                updateApplicationStatus({ id: id, status: "reject" });
-              }}
-            >
-              {" "}
-              <Badge color="#f50" text="Reject" />
-            </span>
-          ),
-          key: "1",
-          value: "approve",
-        },
-        {
-          label: (
-            <span
-              onClick={() => {
-                updateApplicationStatus({ id: id, status: "shortlist" });
-              }}
-            >
-              {" "}
-              <Badge status="processing" text="ShortList" />
-            </span>
-          ),
-          key: "2",
-          value: "shortlist",
-        },
-        {
-          label: (
-            <span
-              onClick={() => {
-                updateApplicationStatus({ id: id, status: "waiting" });
-              }}
-            >
-              {" "}
-              <Badge status="warning" text="Waiting" />
-            </span>
-          ),
-          key: "3",
-          value: "Waiting",
-        },
-      ]}
-    />
-  );
-};
-
 export const DashBoard = () => {
+  const [form] = Form.useForm();
   const [data, setData] = useState();
   const [spin, setSpin] = useState(false);
   const [filters, setFilters] = useState();
 
-  
-
-  const getData = () => {
+  const getData = (values) => {
     setSpin(true);
     API.dashboard
-      .getAdmissionAppliedDetails()
+      .getAdmissionAppliedDetails(JSON.stringify(values))
       .then((resp) => {
         setData(resp.data.data);
         setSpin(false);
@@ -123,6 +46,99 @@ export const DashBoard = () => {
         setSpin(false);
         message.error(error);
       });
+  };
+  const search = () => {
+    form.validateFields().then((values) => {
+      setFilters(values);
+      getData(values);
+    });
+  };
+
+  const resetParams = () => {
+    form.resetFields();
+    search();
+  };
+
+  const MenuSelection = ({ id, getData, studentData }) => {
+    var updateApplicationStatus = (values) => {
+      values = { ...values, studentData };
+      API.dashboard
+        .updateApplicationStatus(values)
+        .then(() => {
+          getData(filters);
+          message.success("Successfuly Updated");
+        })
+        .catch(() => {
+          message.error("Error Occured");
+        });
+    };
+
+    return (
+      <Menu
+        style={{ padding: "10px" }}
+        items={[
+          {
+            label: (
+              <span
+                onClick={() => {
+                  updateApplicationStatus({
+                    id: id,
+                    status: "approve",
+                  });
+                }}
+              >
+                {" "}
+                <Badge color="#87d068" text="Approve" />
+              </span>
+            ),
+            key: "0",
+            value: "approve",
+          },
+          {
+            label: (
+              <span
+                onClick={() => {
+                  updateApplicationStatus({ id: id, status: "reject" });
+                }}
+              >
+                {" "}
+                <Badge color="#f50" text="Reject" />
+              </span>
+            ),
+            key: "1",
+            value: "approve",
+          },
+          {
+            label: (
+              <span
+                onClick={() => {
+                  updateApplicationStatus({ id: id, status: "shortlist" });
+                }}
+              >
+                {" "}
+                <Badge status="processing" text="ShortList" />
+              </span>
+            ),
+            key: "2",
+            value: "shortlist",
+          },
+          {
+            label: (
+              <span
+                onClick={() => {
+                  updateApplicationStatus({ id: id, status: "waiting" });
+                }}
+              >
+                {" "}
+                <Badge status="warning" text="Waiting" />
+              </span>
+            ),
+            key: "3",
+            value: "Waiting",
+          },
+        ]}
+      />
+    );
   };
 
   const tableColumn = [
@@ -208,7 +224,13 @@ export const DashBoard = () => {
       key: "10",
       render: (_, result) => (
         <Dropdown
-          overlay={<MenuSelection id={result.id} getData={getData} />}
+          overlay={
+            <MenuSelection
+              id={result.id}
+              studentData={result}
+              getData={getData}
+            />
+          }
           trigger={["click"]}
         >
           <Button
@@ -235,17 +257,23 @@ export const DashBoard = () => {
   ];
 
   useEffect(() => {
-    getData(filters);
+    search();
   }, []);
 
   return (
     <div>
-      <PageHeaders
-        title={"Dashboard"}
-        icon={<HomeFilled />}
-        DownloadXlxs={<DownloadXlxs data={data} />}
-      />
-      <QueryFilter spin={spin} getData={getData} setFilters={setFilters} />
+      <PageHeaders title={"Dashboard"} icon={<HomeFilled />} />
+      <Form form={form} layout="horizontal">
+        <QueryFilter
+          form={form}
+          spin={spin}
+          search={search}
+          getData={getData}
+          filters={filters}
+          setFilters={setFilters}
+          resetParams={resetParams}
+        />
+      </Form>
       <Content
         className="site-layout-background"
         style={{
@@ -258,7 +286,21 @@ export const DashBoard = () => {
           indicator={<LoadingOutlined style={{ color: "black" }} />}
           spinning={spin}
         >
+          <h3>
+            <Space>
+              <FileDoneOutlined />
+              Applicant List
+            </Space>
+            <div style={{ float: "right" }}>
+              <DownloadXlxs data={data} />
+            </div>
+          </h3>
+          <Divider />
           <Table
+            xs="small"
+            sm="small"
+            md="middle"
+            lg="large"
             style={{
               marginTop: "10px",
             }}

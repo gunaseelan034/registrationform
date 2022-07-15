@@ -5,7 +5,7 @@ import {
   Space,
 } from "antd";
 
-export const PageHeaders = ({ title,subTitle, icon, DownloadXlxs }) => {
+export const PageHeaders = ({ title,subTitle, icon }) => {
   return (
     <PageHeader
       className="site-page-header site-layout-background"
@@ -16,7 +16,6 @@ export const PageHeaders = ({ title,subTitle, icon, DownloadXlxs }) => {
       title={title}
       extra={[
         <Space>
-          {DownloadXlxs}
           <Divider />
           <Breadcrumb>
             <Breadcrumb.Item>{icon}</Breadcrumb.Item>

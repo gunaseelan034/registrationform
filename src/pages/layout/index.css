@@ -20,6 +20,15 @@
   background: #fff;
 }
 
+.ant-layout .site-layout {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ant-layout::-webkit-scrollbar {
+  width: 5px;height: 5px
+}
+
 .trigger {
   margin-left: "20px";
 }

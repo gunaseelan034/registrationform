@@ -13,14 +13,14 @@ thead {
 .ant-table-thead  {
   background: #ffffff;
 }
-.ant-layout .site-layout {
+/* .ant-layout .site-layout {
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .ant-layout::-webkit-scrollbar {
-  width: 0;height: 0
-}
+  width: 5px;height: 5px
+} */
 .ant-table table {
      width: 100%;
      text-align: left;

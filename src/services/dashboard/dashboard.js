@@ -1,8 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "../config";
 
-export const getAdmissionAppliedDetails = () => {
-  return axios(BASE_URL + "/user/get", {
+export const getAdmissionAppliedDetails = (values) => {
+  return axios(BASE_URL + `/user/get/${values}`, {
     method: "GET",
   })
     .then((resp) => resp)
@@ -17,6 +17,12 @@ export const getAdmissionAppliedDetailsById = (values) => {
     .catch((err) => err);
 };
 
+export const getUserByQueryFilter = (values) => {
+  return axios(BASE_URL + `/user/getstudentbyqueryfilter/${values}`, {
+    method: "GET",
+  });
+};
+
 export const updateApplicationStatus = (values) => {
   return axios(BASE_URL + `/user/updatestatus`, {
     method: "put",
@@ -25,4 +31,3 @@ export const updateApplicationStatus = (values) => {
     .then((resp) => resp)
     .catch((err) => err);
 };
-
