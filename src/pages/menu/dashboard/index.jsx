@@ -150,7 +150,7 @@ export const DashBoard = () => {
     {
       title: "Admission No",
       dataIndex: "admission_no",
-      sorter: true,
+      sorter: (a, b) => a.admission_no.length - b.admission_no.length,
       key: "1",
       render: (_, result) => (
         <span style={{ fontSize: "14px" }}>
@@ -192,7 +192,6 @@ export const DashBoard = () => {
     {
       title: "Class",
       dataIndex: "students",
-      sorter: (a, b) => a - b,
       key: "8",
       render: (students) => students.map((students) => students.class),
     },
@@ -283,13 +282,11 @@ export const DashBoard = () => {
           spinning={spin}
         >
           <Table
+          checkStrictly={true}
             xs="small"
             sm="small"
             md="middle"
             lg="large"
-            style={{
-              marginTop: "10px",
-            }}
             pagination={{
               pageSizeOptions: ["10", "20"],
               showSizeChanger: true,
@@ -297,6 +294,7 @@ export const DashBoard = () => {
             className="ant-table table ant-table-thead .ant-pagination-item-active"
             dataSource={data}
             columns={tableColumn}
+            expandable
           />
         </Spin>
       </Content>

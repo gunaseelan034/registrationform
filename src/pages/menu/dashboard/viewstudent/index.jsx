@@ -25,6 +25,7 @@ import API from "../../../../services/index";
 import { PageHeaders } from "../../../layout/components/pageheader/pageheader";
 import { TagStatus } from "./tagStatus";
 import { Pdfdownloader } from "./pdfdownload/pdfDownload";
+import { BASE_URL } from "../../../../services/config";
 const { Content } = Layout;
 const { Meta } = Card;
 
@@ -105,7 +106,7 @@ export const ViewAll = () => {
                             padding: "10px",
                           }}
                           preview={false}
-                          src={`http://localhost:3002/static/image/${data.applicant_photo}`}
+                          src={`${BASE_URL}/static/image/${data.applicant_photo}`}
                         ></Image>
                       </Card>
                     </>
@@ -119,21 +120,15 @@ export const ViewAll = () => {
                     >
                       <a
                         target="_blank"
-                        href={`http://localhost:3002/static/image/${data.adhar_photo}`}
+                        href={`${BASE_URL}/static/image/${data.adhar_photo}`}
                       >
-                        <Space>
-                          <EyeOutlined />
-                          View Adhar
-                        </Space>
+                        <Space>View Adhar</Space>
                       </a>
                       <a
                         target="_blank"
-                        href={`http://localhost:3002/static/image/${data.age_proof}`}
+                        href={`${BASE_URL}/static/image/${data.age_proof}`}
                       >
-                        <Space>
-                          <EyeOutlined />
-                          View AgeProof
-                        </Space>
+                        <Space>View AgeProof</Space>
                       </a>
                     </div>,
                   ]}
