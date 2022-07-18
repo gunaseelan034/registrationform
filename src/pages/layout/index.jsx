@@ -12,7 +12,7 @@ const Home = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout >
       <Siders collapsed={collapsed} />
       <Layout className="site-layout">
         <Headers

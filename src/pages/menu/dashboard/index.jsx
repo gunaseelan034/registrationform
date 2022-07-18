@@ -15,7 +15,6 @@ import {
 import {
   DownOutlined,
   EyeOutlined,
-  FileDoneOutlined,
   HomeFilled,
   LoadingOutlined,
 } from "@ant-design/icons";
@@ -191,14 +190,6 @@ export const DashBoard = () => {
       key: "6",
     },
     {
-      title: "Age",
-      dataIndex: "students",
-      key: "7",
-      sorter: (a, b) => a - b,
-      render: (students) =>
-        students.map((students) => students.age + students.age),
-    },
-    {
       title: "Class",
       dataIndex: "students",
       sorter: (a, b) => a - b,
@@ -262,7 +253,11 @@ export const DashBoard = () => {
 
   return (
     <div>
-      <PageHeaders title={"Dashboard"} icon={<HomeFilled />} />
+      <PageHeaders
+        DownloadXlxs={<DownloadXlxs data={data} />}
+        title={"Dashboard"}
+        icon={<HomeFilled />}
+      />
       <Form form={form} layout="horizontal">
         <QueryFilter
           form={form}
@@ -279,23 +274,14 @@ export const DashBoard = () => {
         style={{
           margin: "12px 16px",
           padding: 24,
-          minHeight: 250,
+          margin: "24px 16px 0",
+          overflow: "initial",
         }}
       >
         <Spin
           indicator={<LoadingOutlined style={{ color: "black" }} />}
           spinning={spin}
         >
-          <h3>
-            <Space>
-              <FileDoneOutlined />
-              Applicant List
-            </Space>
-            <div style={{ float: "right" }}>
-              <DownloadXlxs data={data} />
-            </div>
-          </h3>
-          <Divider />
           <Table
             xs="small"
             sm="small"

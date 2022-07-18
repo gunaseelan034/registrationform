@@ -6,6 +6,14 @@ const { Sider } = Layout;
 export const Siders = ({ collapsed }) => {
   return (
     <Sider
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "sticky",
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }}
       trigger={null}
       collapsible
       collapsed={collapsed}

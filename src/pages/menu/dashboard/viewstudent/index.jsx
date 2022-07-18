@@ -13,12 +13,7 @@ import {
   Space,
 } from "antd";
 import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
   LoadingOutlined,
-  DownOutlined,
-  DownloadOutlined,
   HomeFilled,
   EyeOutlined,
   UserOutlined,
@@ -42,6 +37,7 @@ export const ViewAll = () => {
   var [studentData, setStudentData] = useState([]);
   var [fatherData, setFatherData] = useState([]);
   var [motherData, setMotherData] = useState([]);
+  var [aluminiDetails, setAluminiDetails] = useState([]);
   var [communicationAddress, setCommunicationAddress] = useState([]);
   var [permenantAddress, setPermenantAddress] = useState([]);
 
@@ -51,6 +47,7 @@ export const ViewAll = () => {
       .getAdmissionAppliedDetailsById(value)
       .then((resp) => {
         setData(resp.data.data[0]);
+        setAluminiDetails(JSON.parse(resp.data.data[0].alumini_details));
         setStudentData(resp.data.data[0].students[0]);
         setCommunicationAddress(
           JSON.parse(resp.data.data[0].addresses[0].communication_address)
@@ -104,8 +101,6 @@ export const ViewAll = () => {
                         {" "}
                         <Image
                           style={{
-                            height: "230px",
-                            width: "250px",
                             textAlign: "center",
                             padding: "10px",
                           }}
@@ -196,6 +191,9 @@ export const ViewAll = () => {
                   <Descriptions.Item label={<b>Class</b>}>
                     {studentData.class}
                   </Descriptions.Item>
+                  <Descriptions.Item label={<b>Adhar Number</b>}>
+                    {studentData.aadhar_no}
+                  </Descriptions.Item>
                   <Descriptions.Item label={<b>Blood Group</b>}>
                     {studentData.blood_group}
                   </Descriptions.Item>
@@ -234,18 +232,31 @@ export const ViewAll = () => {
                 {data.relevant_type === "General" ? null : (
                   <Col span={8}>
                     <Descriptions size="small" title="Alumni Details" bordered>
-                      <Descriptions.Item label={<b>Name</b>} span={6}>
-                        {fatherData.first_name + fatherData.last_name}
-                      </Descriptions.Item>
-                      <Descriptions.Item label={<b>Contact Mail</b>} span={6}>
-                        {fatherData.email}
-                      </Descriptions.Item>
-                      <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
-                        {fatherData.mobile_no}
-                      </Descriptions.Item>
-                      <Descriptions.Item label={<b>Occupation</b>} span={6}>
-                        {fatherData.occupation}
-                      </Descriptions.Item>
+                      {data.relevant_type !== "Siblings" ? (
+                        <>
+                          <Descriptions.Item label={<b>Name</b>} span={6}>
+                            {aluminiDetails.name}
+                          </Descriptions.Item>
+                          <Descriptions.Item
+                            label={<b>Year Of Passed Out</b>}
+                            span={6}
+                          >
+                            {aluminiDetails.year}
+                          </Descriptions.Item>
+                        </>
+                      ) : (
+                        <>
+                          <Descriptions.Item label={<b>Name</b>} span={6}>
+                            {aluminiDetails.name}
+                          </Descriptions.Item>
+                          <Descriptions.Item label={<b>Class</b>} span={6}>
+                            {aluminiDetails.class}
+                          </Descriptions.Item>
+                          <Descriptions.Item label={<b>Setion</b>} span={6}>
+                            {aluminiDetails.section}
+                          </Descriptions.Item>
+                        </>
+                      )}
                     </Descriptions>
                   </Col>
                 )}

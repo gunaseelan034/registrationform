@@ -1,11 +1,6 @@
-import {
-  Breadcrumb,
-  Divider,
-  PageHeader,
-  Space,
-} from "antd";
+import { Breadcrumb, Divider, PageHeader, Space } from "antd";
 
-export const PageHeaders = ({ title,subTitle, icon }) => {
+export const PageHeaders = ({ title, subTitle, icon, DownloadXlxs }) => {
   return (
     <PageHeader
       className="site-page-header site-layout-background"
@@ -16,6 +11,7 @@ export const PageHeaders = ({ title,subTitle, icon }) => {
       title={title}
       extra={[
         <Space>
+          {DownloadXlxs}
           <Divider />
           <Breadcrumb>
             <Breadcrumb.Item>{icon}</Breadcrumb.Item>

@@ -5,7 +5,7 @@ import {
 } from "@ant-design/icons";
 import { Form, Button, Col, Row, Select, Tooltip, Input, Space } from "antd";
 
-export const QueryFilter = ({ spin, resetParams, search }) => {
+export const QueryFilter = ({ spin, resetParams, search, DownloadXlxs }) => {
   const relevanOption = [
     { label: "General", value: "General" },
     { label: "Father", value: "Father" },
@@ -13,6 +13,8 @@ export const QueryFilter = ({ spin, resetParams, search }) => {
     { label: "Siblings", value: "Siblings" },
   ];
   const classes = [
+    { label: "LKG", value: "LKG" },
+    { label: "UKG", value: "UKG" },
     { label: "1", value: "1" },
     { label: "2", value: "2" },
     { label: "3", value: "3" },
@@ -39,7 +41,7 @@ export const QueryFilter = ({ spin, resetParams, search }) => {
         <Row gutter={1}>
           <Col span={18}>
             <Row gutter={24}>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item name="relevant_type" label="Relevant Type">
                   <Select
                     allowClear
@@ -49,7 +51,7 @@ export const QueryFilter = ({ spin, resetParams, search }) => {
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item name="class" label="Class">
                   <Select
                     allowClear
@@ -59,7 +61,7 @@ export const QueryFilter = ({ spin, resetParams, search }) => {
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item name="mobile" label="Mobile">
                   <Input placeholder="Mobile" 
                     allowClear
