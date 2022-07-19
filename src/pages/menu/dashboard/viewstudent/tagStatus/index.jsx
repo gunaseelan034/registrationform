@@ -5,19 +5,19 @@ export const TagStatus = ({result}) => {
       {
         if(result.status == 'approve') {
             return (
-                <Tag color='green'>Approved</Tag>
+                <Tag color='#87d068' style={{width: '80px', textAlign: 'center'}}>Approved</Tag>
             )
         } else if (result.status == 'reject') {
             return (
-                <Tag color='red'>Rejected</Tag>
+                <Tag  color="#f50" style={{width: '80px', textAlign: 'center'}}>Rejected</Tag>
             )
-        } else if (result.status == 'shortlist') {
+        } else if (result.status == 'shortlist') {  
             return (
-                <Tag color='yellow'>ShortListed</Tag>
+                <Tag color="#3b5999" style={{width: '80px', textAlign: 'center'}}>ShortListed</Tag>
             )
         } else {
             return (
-                <Tag color='default'>Waiting</Tag>
+                <Tag color='#f50' style={{width: '80px', textAlign: 'center'}}>Waiting</Tag>
             )
         }
       }

@@ -115,7 +115,7 @@ export const DashBoard = () => {
                 }}
               >
                 {" "}
-                <Badge status="processing" text="ShortList" />
+                <Badge color="#3b5999" text="ShortList" />
               </span>
             ),
             key: "2",
@@ -129,7 +129,17 @@ export const DashBoard = () => {
                 }}
               >
                 {" "}
-                <Badge status="warning" text="Waiting" />
+                <Badge color="#f50" text="Waiting" />
+              </span>
+            ),
+            key: "3",
+            value: "Waiting",
+          },
+          {
+            label: (
+              <span onClick={() => {}}>
+                {" "}
+                <Badge color="grey" text="Interview" />
               </span>
             ),
             key: "3",
@@ -150,11 +160,11 @@ export const DashBoard = () => {
     {
       title: "Admission No",
       dataIndex: "admission_no",
-      sorter: (a, b) => a.admission_no.length - b.admission_no.length,
-      key: "1",
+      sorter: (a, b) => a.admission_no - b.admission_no,
+      key: "admission_no",
       render: (_, result) => (
         <span style={{ fontSize: "14px" }}>
-          {result.admission_no == null ? "N/A" : result.admission_no}
+          {result.admission_no == null ? "-" : result.admission_no}
         </span>
       ),
     },
@@ -179,7 +189,7 @@ export const DashBoard = () => {
     {
       title: "Email",
       dataIndex: "email",
-      key: "5",
+      key: "email",
       render: (_, result) => (
         <span style={{ fontSize: "14px" }}>{result.email}</span>
       ),
@@ -187,7 +197,7 @@ export const DashBoard = () => {
     {
       title: "Mobile",
       dataIndex: "mobile",
-      key: "6",
+      key: "mobile",
     },
     {
       title: "Class",
@@ -199,10 +209,10 @@ export const DashBoard = () => {
     {
       title: "View",
       dataIndex: "view",
-      key: "9",
+      key: "view",
       render: (_, result) => (
         <Link to={`viewstudent/?id=${result.id}`}>
-          <Button size="small" onClick={() => {}}>
+          <Button type="primary" size="small" onClick={() => {}}>
             <EyeOutlined /> View
           </Button>
         </Link>
@@ -211,7 +221,7 @@ export const DashBoard = () => {
     {
       title: "Action",
       dataIndex: "action",
-      key: "10",
+      key: "action",
       render: (_, result) => (
         <Dropdown
           overlay={
@@ -241,7 +251,7 @@ export const DashBoard = () => {
     {
       title: "Status",
       dataIndex: "status",
-      key: "11",
+      key: "status",
       render: (_, result) => <TagStatus result={result} />,
     },
   ];
@@ -282,7 +292,7 @@ export const DashBoard = () => {
           spinning={spin}
         >
           <Table
-          checkStrictly={true}
+            checkStrictly={true}
             xs="small"
             sm="small"
             md="middle"

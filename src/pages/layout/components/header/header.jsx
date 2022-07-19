@@ -97,12 +97,9 @@ export const Headers = ({ setCollapsed, collapsed, className }) => {
 
   return (
     <Header
-      className={className}
-      style={{
-        padding: 0,
-      }}
+      className={'header'}
     >
-      <span style={{ marginLeft: "30px" }}>
+      <span >
         {React.createElement(collapsed ? MenuOutlined : MenuOutlined, {
           className: "trigger",
           onClick: () => setCollapsed(!collapsed),
@@ -134,7 +131,7 @@ export const Headers = ({ setCollapsed, collapsed, className }) => {
               <DownOutlined />
             </span>
           </Dropdown>
-          <Avatar />
+          <Avatar src={`http://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png`} />
         </Space>
       </span>
     </Header>

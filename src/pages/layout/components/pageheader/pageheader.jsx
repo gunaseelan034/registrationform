@@ -3,10 +3,10 @@ import { Breadcrumb, Divider, PageHeader, Space } from "antd";
 export const PageHeaders = ({ title, subTitle, icon, DownloadXlxs }) => {
   return (
     <PageHeader
-      className="site-page-header site-layout-background"
+      // className="site-page-header site-layout-background"
       style={{
-        margin: "24px 16px",
-        padding: "10px 24px",
+        margin: "10px 16px",
+        padding: "5px 24px",
       }}
       title={title}
       extra={[

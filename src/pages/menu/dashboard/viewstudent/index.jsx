@@ -11,6 +11,7 @@ import {
   Divider,
   Image,
   Space,
+  Tooltip,
 } from "antd";
 import {
   LoadingOutlined,
@@ -105,6 +106,7 @@ export const ViewAll = () => {
                             textAlign: "center",
                             padding: "10px",
                           }}
+                          width={160}
                           preview={false}
                           src={`${BASE_URL}/static/image/${data.applicant_photo}`}
                         ></Image>
@@ -117,20 +119,7 @@ export const ViewAll = () => {
                         display: "flex",
                         justifyContent: "space-between",
                       }}
-                    >
-                      <a
-                        target="_blank"
-                        href={`${BASE_URL}/static/image/${data.adhar_photo}`}
-                      >
-                        <Space>View Adhar</Space>
-                      </a>
-                      <a
-                        target="_blank"
-                        href={`${BASE_URL}/static/image/${data.age_proof}`}
-                      >
-                        <Space>View AgeProof</Space>
-                      </a>
-                    </div>,
+                    ></div>,
                   ]}
                 >
                   <Meta
@@ -155,11 +144,35 @@ export const ViewAll = () => {
                   layout="horizontal"
                   size="small"
                   extra={
-                    <Pdfdownloader
-                      downloadRef={downloadRef}
-                      data={data}
-                      studentData={studentData}
-                    />
+                    <div style={{ display: "flex" }}>
+                      <Space>
+                        <Pdfdownloader
+                          downloadRef={downloadRef}
+                          data={data}
+                          studentData={studentData}
+                        />
+                        <Tooltip title="View Adhar Photo">
+                          <Button>
+                            <a
+                              target="_blank"
+                              href={`${BASE_URL}/static/image/${data.adhar_photo}`}
+                            >
+                              View Adhar
+                            </a>
+                          </Button>
+                        </Tooltip>
+                        <Tooltip title="View Age Proof">
+                          <Button>
+                            <a
+                              target="_blank"
+                              href={`${BASE_URL}/static/image/${data.age_proof}`}
+                            >
+                              View Age Proof
+                            </a>
+                          </Button>
+                        </Tooltip>
+                      </Space>
+                    </div>
                   }
                 >
                   <Descriptions.Item label={<b>Relevant Type</b>}>
@@ -173,6 +186,9 @@ export const ViewAll = () => {
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Age</b>}>
                     {studentData.age}
+                  </Descriptions.Item>
+                  <Descriptions.Item label={<b>DOB</b>}>
+                    {studentData.dob}
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Application Status</b>}>
                     <TagStatus result={data} />
@@ -205,16 +221,16 @@ export const ViewAll = () => {
                     {studentData.community}
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Height</b>}>
-                    {studentData.height}
+                    {studentData.height + " " + "Cm"}
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Weight</b>}>
-                    {studentData.weight}
+                    {studentData.weight + " " + "kg"}
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Mother Tongue</b>}>
                     {studentData.mother_tongue}
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Distance</b>}>
-                    {studentData.distance}
+                    {studentData.distance + " " + "km"}
                   </Descriptions.Item>
                   <Descriptions.Item label={<b>Proficiency In Sports</b>}>
                     {studentData.prof_in_sports}
@@ -223,7 +239,7 @@ export const ViewAll = () => {
               </Col>
             </Row>
             <Card style={{ padding: "1px", marginTop: "10px" }}>
-              <Row>
+              <Row gutter={24}>
                 {data.relevant_type === "General" ? null : (
                   <Col span={8}>
                     <Descriptions size="small" title="Alumni Details" bordered>
@@ -256,7 +272,23 @@ export const ViewAll = () => {
                   </Col>
                 )}
                 <Col span={data.relevant_type === "General" ? 12 : 8}>
-                  <Descriptions size="small" title="Father Details" bordered>
+                  <Descriptions
+                    size="small"
+                    title="Father Details"
+                    bordered
+                    extra={
+                      <Tooltip title="View Father Photo">
+                        <Button size="middle" type="primary">
+                          <a
+                            target="_blank"
+                            href={`${BASE_URL}/static/image/${data.father_photo}`}
+                          >
+                            <EyeOutlined /> View Father Photo
+                          </a>
+                        </Button>
+                      </Tooltip>
+                    }
+                  >
                     <Descriptions.Item label={<b>Father Name</b>} span={6}>
                       {fatherData.first_name + fatherData.last_name}
                     </Descriptions.Item>
@@ -264,7 +296,18 @@ export const ViewAll = () => {
                       {fatherData.email}
                     </Descriptions.Item>
                     <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
-                      {fatherData.mobile_no}
+                    {
+                        <>
+                          <Space>
+                            {fatherData.mobile_no}{" "}
+                            <Image
+                            style={{float: 'right',}}
+                              width={100}
+                              src={`${BASE_URL}/static/image/${data.father_photo}`}
+                            />
+                          </Space>
+                        </>
+                      }
                     </Descriptions.Item>
                     <Descriptions.Item label={<b>Occupation</b>} span={6}>
                       {fatherData.occupation}
@@ -272,7 +315,23 @@ export const ViewAll = () => {
                   </Descriptions>
                 </Col>
                 <Col span={data.relevant_type === "General" ? 12 : 8}>
-                  <Descriptions size="small" title="Mother Details" bordered>
+                  <Descriptions
+                    size="small"
+                    title="Mother Details"
+                    bordered
+                    extra={
+                      <Tooltip title="View Mother Photo">
+                        <Button size="middle" type="primary">
+                          <a
+                            target="_blank"
+                            href={`${BASE_URL}/static/image/${data.father_photo}`}
+                          >
+                            <EyeOutlined /> View Mother Photo
+                          </a>
+                        </Button>
+                      </Tooltip>
+                    }
+                  >
                     <Descriptions.Item label={<b>Mother Name</b>} span={6}>
                       {motherData.first_name + motherData.last_name}
                     </Descriptions.Item>
@@ -280,7 +339,18 @@ export const ViewAll = () => {
                       {motherData.email}
                     </Descriptions.Item>
                     <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
-                      {motherData.mobile_no}
+                      {
+                        <>
+                          <Space>
+                            {motherData.mobile_no}{" "}
+                            <Image
+                            style={{float: 'right',}}
+                              width={100}
+                              src={`${BASE_URL}/static/image/${data.mother_photo}`}
+                            />
+                          </Space>
+                        </>
+                      }
                     </Descriptions.Item>
                     <Descriptions.Item label={<b>Occupation</b>} span={6}>
                       {motherData.occupation}
@@ -305,11 +375,11 @@ export const ViewAll = () => {
                     <Descriptions.Item label={<b>City</b>} span={6}>
                       {communicationAddress.city}
                     </Descriptions.Item>
-                    <Descriptions.Item label={<b>pincode</b>} span={6}>
-                      {communicationAddress.pin_code}
-                    </Descriptions.Item>
                     <Descriptions.Item label={<b>State</b>} span={6}>
                       {communicationAddress.state}
+                    </Descriptions.Item>
+                    <Descriptions.Item label={<b>Pincode</b>} span={6}>
+                      {communicationAddress.pin_code}
                     </Descriptions.Item>
                   </Descriptions>
                 </Col>
@@ -324,11 +394,11 @@ export const ViewAll = () => {
                     <Descriptions.Item label={<b>City</b>} span={6}>
                       {permenantAddress.city}
                     </Descriptions.Item>
-                    <Descriptions.Item label={<b>pincode</b>} span={6}>
-                      {permenantAddress.pin_code}
-                    </Descriptions.Item>
                     <Descriptions.Item label={<b>State</b>} span={6}>
                       {permenantAddress.state}
+                    </Descriptions.Item>
+                    <Descriptions.Item label={<b>Pincode</b>} span={6}>
+                      {permenantAddress.pin_code}
                     </Descriptions.Item>
                   </Descriptions>
                 </Col>

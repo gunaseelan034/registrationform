@@ -1,17 +1,38 @@
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: rgb(38, 156, 253, 0.3);
+  background-color: rgb(64, 96, 254);
+  border-radius: 5px;
 }
 
 .ant-menu.ant-menu-dark,
 .ant-menu-dark .ant-menu-sub,
 .ant-menu.ant-menu-dark .ant-menu-sub {
-  color: rgba(255, 255, 255, 0.65);
-  background: #090438;
+  color: rgb(0, 0, 0);
+  background: transparent;
+}
+
+.ant-menu-inline.ant-menu-root .ant-menu-item,
+.ant-menu-inline.ant-menu-root .ant-menu-submenu-title {
+  display: flex;
+  align-items: center;
+  transition: border-color 0.3s, background 0.6s,
+    padding 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.ant-menu-dark .ant-menu-item,
+.ant-menu-dark .ant-menu-item-group-title,
+.ant-menu-dark .ant-menu-item > a,
+.ant-menu-dark .ant-menu-item > span > a {
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .ant-layout-sider {
   position: relative;
   min-width: 0;
-  background: #090438;
+  /* background: 
+    url("https://img.freepik.com/free-vector/abstract-background-with-wavy-surface-black-colors_444390-8197.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: rgb(255, 255, 255);
   transition: all 0.2s;
+  box-shadow: 1px 2px 100px rgba(119, 119, 119, 0.2);
 }

@@ -3,3 +3,7 @@
      outline: '1px solid grey';
      width: '230px'
 }
+.header {
+     background: rgb(64, 96, 254);
+     color: white;
+}
