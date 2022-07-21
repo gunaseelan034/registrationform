@@ -101,6 +101,7 @@ export const MenuSelection = ({ id, getData, studentData, filters }) => {
         ]}
       />
       <SheduleInterview
+        studentData={studentData}
         getData={getData}
         filters={filters}
         id={id}
