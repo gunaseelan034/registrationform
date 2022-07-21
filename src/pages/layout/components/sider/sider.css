@@ -1,13 +1,10 @@
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: rgb(64, 96, 254);
-  color: white;
   border-radius: 5px;
 }
-
 .ant-menu.ant-menu-dark,
 .ant-menu-dark .ant-menu-sub,
 .ant-menu.ant-menu-dark .ant-menu-sub {
-  color: rgb(0, 0, 0);
   background: transparent;
 }
 
@@ -19,12 +16,6 @@
     padding 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.ant-menu-dark .ant-menu-item,
-.ant-menu-dark .ant-menu-item-group-title,
-.ant-menu-dark .ant-menu-item > a,
-.ant-menu-dark .ant-menu-item > span > a {
-  color: rgba(0, 0, 0, 0.85);
-}
 
 .ant-layout-sider {
   position: relative;

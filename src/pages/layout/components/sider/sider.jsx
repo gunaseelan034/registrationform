@@ -1,6 +1,6 @@
-import { CalendarOutlined, DashboardOutlined, DashOutlined } from "@ant-design/icons";
+import { CalendarOutlined, DashboardOutlined, } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import { routes } from "../../../../routes/index";
+import { Link } from 'react-router-dom'
 import "./sider.css";
 const { Sider } = Layout;
 
@@ -26,15 +26,19 @@ export const Siders = ({ collapsed }) => {
           width={50}
         />
       </div>
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{
+      <Menu  mode="inline" style={{
         marginTop: "18px",
       }}
       >
         <Menu.Item key="1" icon={<DashboardOutlined />}>
-          <span >Deshboard</span>
+          <Link to='dashboard'>
+            <span>Deshboard</span>
+          </Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<CalendarOutlined />}>
-          <span >Schedule</span>
+          <Link to='shedule'>
+            <span >Schedule</span>
+          </Link>
         </Menu.Item>
       </Menu>
     </Sider>

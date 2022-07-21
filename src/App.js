@@ -5,6 +5,7 @@ import Auth from "./pages/auth/auth";
 import Home from "./pages/layout";
 import { DashBoard } from "./pages/menu/dashboard";
 import { ViewAll } from "./pages/menu/dashboard/viewstudent";
+import { Shedule } from "./pages/menu/shedule";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Auth />}></Route>
         <Route path="/home" element={<Home />}>
-          <Route index element={<DashBoard />} />
-          <Route path="viewstudent" element={<ViewAll />} />
+          <Route path="dashboard" element={<DashBoard />} />
+          <Route path="dashboard/viewstudent" element={<ViewAll />} />
+          <Route path="shedule" element={<Shedule />} />
         </Route>
       </Routes>
     </BrowserRouter>
