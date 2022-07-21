@@ -1,3 +1,4 @@
+import { CalendarOutlined, DashboardOutlined, DashOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { routes } from "../../../../routes/index";
 import "./sider.css";
@@ -25,15 +26,17 @@ export const Siders = ({ collapsed }) => {
           width={50}
         />
       </div>
-      <Menu
-        style={{
-          marginTop: "18px",
-        }}
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={["1"]}
-        items={routes}
-      />
+      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{
+        marginTop: "18px",
+      }}
+      >
+        <Menu.Item key="1" icon={<DashboardOutlined />}>
+          <span >Deshboard</span>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<CalendarOutlined />}>
+          <span >Schedule</span>
+        </Menu.Item>
+      </Menu>
     </Sider>
   );
 };

@@ -1,5 +1,6 @@
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: rgb(64, 96, 254);
+  color: white;
   border-radius: 5px;
 }
 
@@ -28,10 +29,6 @@
 .ant-layout-sider {
   position: relative;
   min-width: 0;
-  /* background: 
-    url("https://img.freepik.com/free-vector/abstract-background-with-wavy-surface-black-colors_444390-8197.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; */
     background-color: rgb(255, 255, 255);
   transition: all 0.2s;
   box-shadow: 1px 2px 100px rgba(119, 119, 119, 0.2);
