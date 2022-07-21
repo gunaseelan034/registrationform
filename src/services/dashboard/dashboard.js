@@ -25,7 +25,16 @@ export const getUserByQueryFilter = (values) => {
 
 export const updateApplicationStatus = (values) => {
   return axios(BASE_URL + `/user/updatestatus`, {
-    method: "put",
+    method: "PUT",
+    data: values,
+  })
+    .then((resp) => resp)
+    .catch((err) => err);
+};
+
+export const sheduleInterview = (values) => {
+  return axios(BASE_URL + `/user/sheduleinterview`, {
+    method: "PUT",
     data: values,
   })
     .then((resp) => resp)
