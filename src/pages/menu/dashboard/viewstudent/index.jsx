@@ -272,90 +272,69 @@ export const ViewAll = () => {
                   </Col>
                 )}
                 <Col span={data.relevant_type === "General" ? 12 : 8}>
-                  <Descriptions
-                    size="small"
-                    title="Father Details"
-                    bordered
-                    extra={
-                      <Tooltip title="View Father Photo">
-                        <Button size="middle" type="primary">
-                          <a
-                            target="_blank"
-                            href={`${BASE_URL}/static/image/${data.father_photo}`}
-                          >
-                            <EyeOutlined /> View Father Photo
-                          </a>
-                        </Button>
-                      </Tooltip>
-                    }
-                  >
-                    <Descriptions.Item label={<b>Father Name</b>} span={6}>
-                      {fatherData.first_name + fatherData.last_name}
-                    </Descriptions.Item>
-                    <Descriptions.Item label={<b>Contact Mail</b>} span={6}>
-                      {fatherData.email}
-                    </Descriptions.Item>
-                    <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
-                    {
-                        <>
-                          <Space>
+                  <Row>
+                    <Col span={15}>
+                      <Descriptions
+                        size="small"
+                        title="Father Details"
+                        bordered
+                      >
+                        <Descriptions.Item label={<b>Father Name</b>} span={6}>
+                          {fatherData.first_name + fatherData.last_name}
+                        </Descriptions.Item>
+                        <Descriptions.Item label={<b>Contact Mail</b>} span={6}>
+                          {fatherData.email}
+                        </Descriptions.Item>
+                        <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
+                          <>
                             {fatherData.mobile_no}{" "}
-                            <Image
-                            style={{float: 'right',}}
-                              width={100}
-                              src={`${BASE_URL}/static/image/${data.father_photo}`}
-                            />
-                          </Space>
-                        </>
-                      }
-                    </Descriptions.Item>
-                    <Descriptions.Item label={<b>Occupation</b>} span={6}>
-                      {fatherData.occupation}
-                    </Descriptions.Item>
-                  </Descriptions>
+                          </>
+                        </Descriptions.Item>
+                        <Descriptions.Item label={<b>Occupation</b>} span={6}>
+                          {fatherData.occupation}
+                        </Descriptions.Item>
+                      </Descriptions>
+                    </Col>
+                    <Col span={9}>
+                      <Image
+                        style={{ float: 'right', }}
+                        width={100}
+                        src={`${BASE_URL}/static/image/${data.father_photo}`}
+                      /></Col>
+                  </Row>
                 </Col>
                 <Col span={data.relevant_type === "General" ? 12 : 8}>
-                  <Descriptions
-                    size="small"
-                    title="Mother Details"
-                    bordered
-                    extra={
-                      <Tooltip title="View Mother Photo">
-                        <Button size="middle" type="primary">
-                          <a
-                            target="_blank"
-                            href={`${BASE_URL}/static/image/${data.father_photo}`}
-                          >
-                            <EyeOutlined /> View Mother Photo
-                          </a>
-                        </Button>
-                      </Tooltip>
-                    }
-                  >
-                    <Descriptions.Item label={<b>Mother Name</b>} span={6}>
-                      {motherData.first_name + motherData.last_name}
-                    </Descriptions.Item>
-                    <Descriptions.Item label={<b>Contact Mail</b>} span={6}>
-                      {motherData.email}
-                    </Descriptions.Item>
-                    <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
-                      {
-                        <>
-                          <Space>
+                  <Row>
+                    <Col>
+                      <Descriptions
+                        size="small"
+                        title="Mother Details"
+                        bordered
+                      >
+                        <Descriptions.Item label={<b>Mother Name</b>} span={6}>
+                          {motherData.first_name + motherData.last_name}
+                        </Descriptions.Item>
+                        <Descriptions.Item label={<b>Contact Mail</b>} span={6}>
+                          {motherData.email}
+                        </Descriptions.Item>
+                        <Descriptions.Item label={<b>Contact Mobile</b>} span={6}>
+                          <>
                             {motherData.mobile_no}{" "}
-                            <Image
-                            style={{float: 'right',}}
-                              width={100}
-                              src={`${BASE_URL}/static/image/${data.mother_photo}`}
-                            />
-                          </Space>
-                        </>
-                      }
-                    </Descriptions.Item>
-                    <Descriptions.Item label={<b>Occupation</b>} span={6}>
-                      {motherData.occupation}
-                    </Descriptions.Item>
-                  </Descriptions>
+                          </>
+                        </Descriptions.Item>
+                        <Descriptions.Item label={<b>Occupation</b>} span={6}>
+                          {motherData.occupation}
+                        </Descriptions.Item>
+                      </Descriptions>
+                    </Col>
+                    <Col>
+                      <Image
+                        style={{ float: 'right', }}
+                        width={100}
+                        src={`${BASE_URL}/static/image/${data.mother_photo}`}
+                      />
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
               <Divider />
