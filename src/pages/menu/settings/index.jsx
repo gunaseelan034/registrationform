@@ -11,7 +11,9 @@ import {
 import { useContext } from "react";
 import { PageHeaders } from "../../layout/components/pageheader/pageheader"
 import { AppContext } from '../../../providers/context/index'
+import translate from '../../../providers/i18n/translate'
 import { saveToStorage } from "../../../utils/sessionstorage";
+
 const { Content } = Layout;
 
 const languageOption = [
@@ -38,7 +40,7 @@ export const Settings = () => {
         form.validateFields().then((values) => {
             let siteLang = values.language;
             dispatch({ type: 'setLang', siteLang });
-            saveToStorage('siteLang', values);
+            saveToStorage('siteLang', siteLang);
         })
     }
 
@@ -56,7 +58,8 @@ export const Settings = () => {
                     overflow: "initial",
                 }}
             >
-                <Card title={translate("hello", {name: state.name})}>
+                {translate("hello", {name: state.name})}
+                <Card title={``}>
                     <Row>
                         <Col span={6}>
                             <Form form={form}>

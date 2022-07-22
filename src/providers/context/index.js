@@ -16,6 +16,7 @@ let reducer = (state, action) => {
 const AppContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, defaultContext);
   const value = { state, dispatch };
+  console.log(state.name)
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
