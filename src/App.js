@@ -6,6 +6,7 @@ import Home from "./pages/layout";
 import { DashBoard } from "./pages/menu/dashboard";
 import { ViewAll } from "./pages/menu/dashboard/viewstudent";
 import { Shedule } from "./pages/menu/shedule";
+import { Settings } from "./pages/menu/settings";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="dashboard" element={<DashBoard />} />
           <Route path="dashboard/viewstudent" element={<ViewAll />} />
           <Route path="shedule" element={<Shedule />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>

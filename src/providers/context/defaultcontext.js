@@ -1,6 +1,7 @@
+import { getFromStorage } from "../../utils/sessionstorage";
 import { LOCALES } from "../i18n/locales";
 
-
 export default {
-    siteLang: LOCALES.ENGLISH
-}
+  siteLang: getFromStorage("siteLang") || LOCALES.ENGLISH,
+  name: "Maksym",
+};

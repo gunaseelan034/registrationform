@@ -1,4 +1,4 @@
-import { CalendarOutlined, DashboardOutlined, } from "@ant-design/icons";
+import { CalendarOutlined, DashboardOutlined, SettingOutlined, } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { Link } from 'react-router-dom'
 import "./sider.css";
@@ -38,6 +38,11 @@ export const Siders = ({ collapsed }) => {
         <Menu.Item key="2" icon={<CalendarOutlined />}>
           <Link to='shedule'>
             <span >Schedule</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="3" icon={<SettingOutlined />}>
+          <Link to='settings'>
+            <span >Settings</span>
           </Link>
         </Menu.Item>
       </Menu>
