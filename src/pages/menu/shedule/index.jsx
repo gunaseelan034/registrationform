@@ -2,7 +2,6 @@ import { CalendarOutlined, CaretRightOutlined, DownOutlined, ReconciliationOutli
 import { Avatar, Button, Collapse, Divider, Dropdown, List, Skeleton, Space, Tag } from "antd"
 import { Content } from "antd/lib/layout/layout"
 import { PageHeaders } from "../../layout/components/pageheader/pageheader"
-import InfiniteScroll from 'react-infinite-scroll-component';
 import API from "../../../services/index";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../services/config";
@@ -37,9 +36,9 @@ export const Shedule = () => {
                 }}
             >
 
-                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h3><ReconciliationOutlined /> Upcomming InterView</h3>
-                    <Button style={{float: 'right'}}><SearchOutlined /> Filter</Button>
+                    <Button style={{ float: 'right' }}><SearchOutlined /> Filter</Button>
                 </div>
                 <Divider />
                 <List
@@ -64,7 +63,7 @@ export const Shedule = () => {
                                         <p>{item.students[0].first_name + item.students[0].last_name}</p>
                                         <Space>
                                             <Tag color='blue'>{moment(item.interview_date).format('YYYY-MM-DD')}</Tag>
-                                            <Tag color='yellow'>{moment(item.interview_date).format('YYYY-MM-DD')}</Tag>
+                                            <Tag color='yellow'>{item.interview_time}</Tag>
                                         </Space>
                                     </>
                                 }
