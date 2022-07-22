@@ -16,8 +16,8 @@ import {
   Space,
 } from "antd";
 import { useNavigate } from "react-router-dom";
-
 import React, { useRef, useState } from "react";
+
 import API from "../../../../services/index";
 import "./header.css";
 const { Header } = Layout;
@@ -30,7 +30,7 @@ export const Headers = ({ setCollapsed, collapsed, className }) => {
   const onSelect = (e) => {
     formRef.current = e.email;
     console.log(formRef);
-    navigete(`viewstudent/?id=${e.id}`);
+    navigete(`dashboard/viewstudent/?id=${e.id}`);
   };
 
   const onChange = (values) => {
