@@ -1,29 +1,32 @@
-import { CalendarOutlined, CaretRightOutlined, DownOutlined, ReconciliationOutlined, SearchOutlined, } from "@ant-design/icons"
-import { Avatar, Button, Collapse, Divider, Dropdown, List, Skeleton, Space, Tag } from "antd"
+import { CalendarOutlined, DownOutlined, ReconciliationOutlined, SearchOutlined, } from "@ant-design/icons"
+import { Avatar, Button, Divider, Dropdown, List, Space, Tag } from "antd"
 import { Content } from "antd/lib/layout/layout"
-import { PageHeaders } from "../../layout/components/pageheader/pageheader"
-import API from "../../../services/index";
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../../services/config";
-import { MenuSelection } from "../dashboard/statusmenu";
 import moment from "moment";
 
-const { Panel } = Collapse;
+import { PageHeaders } from "../../layout/components/pageheader/pageheader"
+import API from "../../../services/index";
+import { BASE_URL } from "../../../services/config";
+import { MenuSelection } from "../dashboard/statusmenu";
+import { FilterInterView } from "./filter";
 
 
 export const Shedule = () => {
     const [data, setData] = useState([]);
+    const [visible, setModalVisible] = useState(false);
+
+    const openModal = () => setModalVisible(true);
+    const closeModal = () => setModalVisible(false);
 
     const getInterViewList = () => {
         API.InterView.getInterViewList().then((resp) => {
             setData(resp.data.data);
             console.log(resp.data.data)
         }).catch((err) => { console.log(err) })
-
     }
 
     useEffect(() => {
-        getInterViewList()
+        getInterViewList();
     }, [])
     return (
         <div>
@@ -38,7 +41,7 @@ export const Shedule = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h3><ReconciliationOutlined /> Upcomming InterView</h3>
-                    <Button style={{ float: 'right' }}><SearchOutlined /> Filter</Button>
+                    <Button style={{ float: 'right' }} onClick={openModal}><SearchOutlined /> Filter</Button>
                 </div>
                 <Divider />
                 <List
@@ -94,8 +97,12 @@ export const Shedule = () => {
                         </List.Item>
                     )}
                 />
-
             </Content>
+
+            <FilterInterView
+                visible={visible}
+                closeModal={closeModal}
+            />
         </div>
     )
 }
