@@ -66,7 +66,6 @@ export const Shedule = () => {
                                         <p>{item.students[0].first_name + item.students[0].last_name}</p>
                                         <Space>
                                             <Tag color='blue'>{moment(item.interview_date).format('YYYY-MM-DD')}</Tag>
-                                            <Tag color='yellow'>{item.interview_time}</Tag>
                                         </Space>
                                     </>
                                 }
