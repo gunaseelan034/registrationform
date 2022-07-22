@@ -1,22 +1,33 @@
-import { Form, message, Modal } from "antd"
+import { Form, message, Modal, TimePicker } from "antd"
+import moment from "moment";
 import { useState } from "react";
-import TimePicker from 'react-time-picker';
+
 import Calendar from "react-calendar"
 import API from '../../../../services/index'
+
 
 export const SheduleInterview = ({ isModalOpen, handleModalClose, getData, filters, id, studentData }) => {
     const [form] = Form.useForm();
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedTime, setSelectedTime] = useState(null);
 
     const onOk = (e) => {
-        console.log(form.validateFields().then((values) => {
+        console.log()
+        form.validateFields().then((values) => {
             let formData = values;
-            API.dashboard.sheduleInterview({ ...formData, status: 'Interview', id: id, interview_date: selectedDate.toString(), studentData }).then(() => {
+            API.dashboard.sheduleInterview({
+                ...formData,
+                status: 'Interview',
+                id: id,
+                interview_date: selectedDate.toString(),
+                interview_time: moment(selectedTime).format('hh:mm:ss a').toString(),
+                studentData
+            }).then(() => {
                 getData(filters);
                 message.success("Successfuly Updated");
                 handleModalClose()
             }).catch((err) => { message.error("error "); })
-        }))
+        })
     }
 
     return (
@@ -35,6 +46,11 @@ export const SheduleInterview = ({ isModalOpen, handleModalClose, getData, filte
                                 calendarType='ISO 8601'
                                 showNavigation
                                 onChange={(e) => setSelectedDate(e)} value={selectedDate}
+                            />
+                        </Form.Item>
+                        <Form.Item name='interview_time' label='Select Time'>
+                            <TimePicker
+                                onChange={(e) => { setSelectedTime(e) }}
                             />
                         </Form.Item>
                     </Form>
