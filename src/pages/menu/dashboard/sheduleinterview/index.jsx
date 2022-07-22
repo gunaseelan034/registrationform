@@ -1,17 +1,17 @@
 import { Form, message, Modal } from "antd"
 import { useState } from "react";
+import TimePicker from 'react-time-picker';
 import Calendar from "react-calendar"
-
 import API from '../../../../services/index'
 
 export const SheduleInterview = ({ isModalOpen, handleModalClose, getData, filters, id, studentData }) => {
     const [form] = Form.useForm();
-    const [value, onChange] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const onOk = (e) => {
         console.log(form.validateFields().then((values) => {
             let formData = values;
-            API.dashboard.sheduleInterview({ ...formData, status: 'Interview', id: id, interview_date: value.toString(), studentData }).then(() => {
+            API.dashboard.sheduleInterview({ ...formData, status: 'Interview', id: id, interview_date: selectedDate.toString(), studentData }).then(() => {
                 getData(filters);
                 message.success("Successfuly Updated");
                 handleModalClose()
@@ -34,7 +34,7 @@ export const SheduleInterview = ({ isModalOpen, handleModalClose, getData, filte
                             <Calendar
                                 calendarType='ISO 8601'
                                 showNavigation
-                                onChange={onChange} value={value}
+                                onChange={(e) => setSelectedDate(e)} value={selectedDate}
                             />
                         </Form.Item>
                     </Form>

@@ -137,7 +137,7 @@ export const DashBoard = () => {
         <Dropdown
           overlay={
             <MenuSelection
-            filters={filters}
+              filters={filters}
               id={result.id}
               studentData={result}
               getData={getData}

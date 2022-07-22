@@ -16,6 +16,7 @@
     "react-encrypt": "^1.0.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-scripts": "5.0.1",
+    "react-time-picker": "^4.5.0",
     "react-to-print": "^2.14.7",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"

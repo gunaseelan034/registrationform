@@ -5,7 +5,6 @@ import {
   Avatar,
   Row,
   Col,
-  Badge,
   Descriptions,
   Button,
   Divider,
@@ -16,7 +15,6 @@ import {
 import {
   LoadingOutlined,
   HomeFilled,
-  EyeOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
